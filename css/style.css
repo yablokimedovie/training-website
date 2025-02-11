@@ -23,7 +23,19 @@
   background-color: #b1dfbb; /* Slightly darker green on hover */
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 footer {
+  flex-shrink: 0;
   background-color: #28a745; /* Green footer */
   color: white;
   padding: 10px 0;
