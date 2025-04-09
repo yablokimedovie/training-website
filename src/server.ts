@@ -18,7 +18,7 @@ app.use(cors()); // Дозволяє крос-доменні запити
 app.use(bodyParser.json()); // Парсинг JSON в тілі запиту
 
 // Налаштування документації Swagger
-// Надаємо доступ до JSON-специфікації API
+// Надаємо доступ до JSON-специфікації REST API
 app.get('/api-spec.json', (_req, res) => {
     res.json(swaggerSpec);
 });
@@ -29,7 +29,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 const database = container.get<IDatabase>(TYPES.IDatabase);
 const appConfig = container.get<IConfig>('Config');
 
-// Підключаємо роутери до API
+// Підключаємо обробники HTTP-запитів до REST API
 import rabbitRoutes from './routes/rabbits';
 app.use('/api/rabbits', rabbitRoutes);
 

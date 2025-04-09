@@ -18,7 +18,7 @@ export const swaggerSpec = {
             description: 'Development server',
         },
     ],
-    // Визначення роутерів API та операцій з ними
+    // Визначення кінцевих точок (endpoints) REST API та операцій з ними
     paths: {
         '/api/rabbits': {
             // GET запит для отримання всіх зайців

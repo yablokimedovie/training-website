@@ -2,12 +2,12 @@ import { Router, Request, Response } from 'express';
 import { container } from '../config/container';
 import { RabbitRepository } from '../repositories/RabbitRepository';
 
-// Створюємо новий роутер Express
+// Створюємо новий обробник HTTP-запитів Express
 const router = Router();
 // Отримуємо екземпляр репозиторію зайців з контейнера інверсії залежностей
 const rabbitRepository = container.get(RabbitRepository);
 
-// Роутер для HTTP метода GET / - отримання всіх записів зайців
+// Обробка HTTP-запиту GET / - отримання всіх записів зайців
 router.get('/', (async (_req: Request, res: Response) => {
     try {
         // Отримуємо всі записи зайців з бази даних через репозиторій
@@ -20,7 +20,7 @@ router.get('/', (async (_req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Роутер для HTTP метода GET /:id - отримання запису одного зайця за ідентифікатором
+// Обробка HTTP-запиту GET /:id - отримання запису одного зайця за ідентифікатором
 router.get('/:id', (async (req: Request, res: Response) => {
     try {
         // Пошук зайця за ідентифікатором
@@ -38,7 +38,7 @@ router.get('/:id', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Роутер для HTTP метода POST / - створення нового запису зайця
+// Обробка HTTP-запиту POST / - створення нового запису зайця
 router.post('/', (async (req: Request, res: Response) => {
     try {
         // Створюємо новий запис зайця з даних запиту
@@ -52,7 +52,7 @@ router.post('/', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Роутер для HTTP метода PUT /:id - повне оновлення запису зайця
+// Обробка HTTP-запиту PUT /:id - повне оновлення запису зайця
 router.put('/:id', (async (req: Request, res: Response) => {
     try {
         // Перевірка наявності всіх обов'язкових полів для PUT запиту
@@ -81,7 +81,7 @@ router.put('/:id', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Роутер для HTTP метода PATCH /:id - часткове оновлення запису зайця
+// Обробка HTTP-запиту PATCH /:id - часткове оновлення запису зайця
 router.patch('/:id', (async (req: Request, res: Response) => {
     try {
         // Часткове оновлення запису зайця - передаються лише ті поля, які потрібно змінити
@@ -99,7 +99,7 @@ router.patch('/:id', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Роутер для HTTP метода DELETE /:id - видалення запису зайця
+// Обробка HTTP-запиту DELETE /:id - видалення запису зайця
 router.delete('/:id', (async (req: Request, res: Response) => {
     try {
         // Видаляємо дані про зайця за ID
