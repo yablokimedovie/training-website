@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Фотогалерея гепарда</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="bg-warning p-3">
+    <nav class="container navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html">Гепард</a>
+    </nav>
+  </header>
+  <main class="container mt-4">
+    <h1>Фотогалерея</h1>
+    <div id="cheetahCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Cheetah4.jpg" class="d-block w-100" alt="Гепард">
+        </div>
+        <div class="carousel-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Cheetah_Kruger.jpg" class="d-block w-100" alt="Гепард в савані">
+        </div>
+        <div class="carousel-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Cheetah_Serengeti.jpg" class="d-block w-100" alt="Гепард на полюванні">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#cheetahCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#cheetahCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
