@@ -101,8 +101,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
       height: graywolf.height,
       weight: graywolf.weight,
       gender: graywolf.gender,
-      description: graywolft.description || '',
-      herdSize: graywolft.herdSize
+      description: graywolf.description || '',
+      herdSize: graywolf.herdSize
     });
     setShowEditModal(true);
   };
@@ -191,9 +191,9 @@ function Rehabilitation() {  // Стан для зберігання даних 
   return (
     <main className="container px-4 py-4">
       <header className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h2 text-success">Реабілітація Сірих вовків</h1>
+        <h1 className="h2 text-secondary">Реабілітація Сірих вовків</h1>
         <button 
-          className="btn btn-success" 
+          className="btn btn-secondary" 
           onClick={handleShowAddModal}
           disabled={loading}
         >
@@ -235,7 +235,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
       {/* Таблиця Сірих вовків */}
       {loading && !error && (
         <div className="text-center my-5">
-          <div className="spinner-border text-success" role="status">
+          <div className="spinner-border text-secondary" role="status">
             <span className="visually-hidden">Завантаження...</span>
           </div>
           <p className="mt-2">Завантаження записів Сірих вовків...</p>
@@ -433,7 +433,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                   <button type="button" className="btn btn-secondary me-2" onClick={() => setShowAddModal(false)}>
                     Скасувати
                   </button>
-                  <button type="submit" className="btn btn-success" disabled={loading}>
+                  <button type="submit" className="btn btn-secondary" disabled={loading}>
                     {loading ? (
                       <>
                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
