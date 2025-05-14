@@ -7,14 +7,14 @@ import { Toast } from 'bootstrap';
 
 // Компонент для управління Сірими вовками, які перебувають на реабілітації, через API
 function Rehabilitation() {  // Стан для зберігання даних та стану інтерфейсу
-  const [rabbits, setRabbits] = useState([]);
+  const [graywolfs, setGraywolfs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false); // Стан для модального вікна видалення
-  const [rabbitToDelete, setRabbitToDelete] = useState(null); // Ідентифікатор Сірого вовка для видалення
-  const [currentRabbit, setCurrentRabbit] = useState(null);
+  const [graywolfToDelete, setGraywolfToDelete] = useState(null); // Ідентифікатор Сірого вовка для видалення
+  const [currentGraywolf, setCurrentGraywolf] = useState(null);
   const [toastMessage, setToastMessage] = useState({ text: '', type: 'success' });
   
   // Посилання до елемента спливаючих сповіщень toast
@@ -32,7 +32,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
   // При рендерингу компонента, отримуємо всіх Сірих вовків
   useEffect(() => {
     document.title = 'Реабілітація Сірих вовків - Сайт про Сірих вовків';
-    fetchRabbits();
+    fetchGraywolfs();
   }, []);
 
   // Показуємо toast повідомлення, коли змінюється toastMessage
@@ -44,17 +44,17 @@ function Rehabilitation() {  // Стан для зберігання даних 
   }, [toastMessage]);
   
   // Отримуємо всіх Сірих вовків з API
-  const fetchRabbits = async () => {
+  const fetchGraywolfs = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get(`${API_BASE_URL}/rabbits`);
-      setRabbits(Array.isArray(response.data) ? response.data : []);
+      const response = await axios.get(`${API_BASE_URL}/graywolfs`);
+      setGraywolfs(Array.isArray(response.data) ? response.data : []);
 
     } catch (err) {
       setError(`Помилка завантаження даних: ${err.message}`);
       console.error('Помилка при отриманні даних про Сірих вовків:', err);
-      setRabbits([]);
+      setGraywolfs([]);
 
     } finally {
       setLoading(false);
@@ -91,30 +91,30 @@ function Rehabilitation() {  // Стан для зберігання даних 
   };
 
   // Відкриваємо модальне вікно для редагування Сірого вовка
-  const handleShowEditModal = (rabbit) => {
-    setCurrentRabbit(rabbit);
+  const handleShowEditModal = (graywolf) => {
+    setCurrentGraywolf(graywolf);
     setFormData({
-      name: rabbit.name,
-      age: rabbit.age,
-      height: rabbit.height,
-      weight: rabbit.weight,
-      gender: rabbit.gender,
-      description: rabbit.description || ''
+      name: graywolf.name,
+      age: graywolf.age,
+      height: graywolf.height,
+      weight: graywolf.weight,
+      gender: graywolf.gender,
+      description: graywolft.description || ''
     });
     setShowEditModal(true);
   };
 
   // Додаємо нового Сірого вовка
-  const handleAddRabbit = async (e) => {
+  const handleAddGraywolf = async (e) => {
     e.preventDefault();
     
     try {
       setLoading(true);
-      const response = await axios.post(`${API_BASE_URL}/rabbits`, formData);
-      const newRabbit = response.data;
-      setRabbits([...rabbits, newRabbit]);
+      const response = await axios.post(`${API_BASE_URL}/graywolfs`, formData);
+      const newGraywolf = response.data;
+      setGraywolfs([...graywolfs, newGraywolf]);
       setShowAddModal(false);
-      setToastMessage({ text: `Сірого вовка "${newRabbit.name}" успішно додано!`, type: 'success' });
+      setToastMessage({ text: `Сірого вовка "${newGraywolf.name}" успішно додано!`, type: 'success' });
 
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message;
@@ -128,18 +128,18 @@ function Rehabilitation() {  // Стан для зберігання даних 
   };
 
   // Оновлюємо існуючого Сірого вовка
-  const handleUpdateRabbit = async (e) => {
+  const handleUpdateGraywolf = async (e) => {
     e.preventDefault();
     
     try {
       setLoading(true);
-      const response = await axios.put(`${API_BASE_URL}/rabbits/${currentRabbit._id}`, formData);
-      const updatedRabbit = response.data;
-      setRabbits(rabbits.map(rabbit => 
-        rabbit._id === currentRabbit._id ? updatedRabbit : rabbit
+      const response = await axios.put(`${API_BASE_URL}/graywolfs/${currentGraywolf._id}`, formData);
+      const updatedGraywolf = response.data;
+      setGraywolfs(graywolfs.map(graywolf => 
+        graywolf._id === currentGraywolf._id ? updatedGraywolf : graywolf
       ));
       setShowEditModal(false);
-      setToastMessage({ text: `Дані про Сірого вовка "${updatedRabbit.name}" оновлено!`, type: 'success' });
+      setToastMessage({ text: `Дані про Сірого вовка "${updatedGraywolf.name}" оновлено!`, type: 'success' });
 
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message;
@@ -153,20 +153,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
   };
    
   // Показуємо модальне вікно підтвердження видалення
-  const handleShowDeleteModal = (rabbit) => {
-    setRabbitToDelete(rabbit);
+  const handleShowDeleteModal = (graywolf) => {
+    setGraywolfToDelete(graywolf);
     setShowDeleteModal(true);
   };
 
   // Видаляємо Сірого вовка
-  const handleDeleteRabbit = async () => {
+  const handleDeleteGraywolf = async () => {
     try {
       setLoading(true);
-      await axios.delete(`${API_BASE_URL}/rabbits/${rabbitToDelete._id}`);
-      setRabbits(rabbits.filter(rabbit => rabbit._id !== rabbitToDelete._id));
-      setToastMessage({ text: `Сірого вовка "${rabbitToDelete.name}" успішно видалено!`, type: 'success' });
+      await axios.delete(`${API_BASE_URL}/graywolfs/${graywolfToDelete._id}`);
+      setGraywolfs(graywolfs.filter(graywolf => graywolf._id !== graywolfToDelete._id));
+      setToastMessage({ text: `Сірого вовка "${graywolfToDelete.name}" успішно видалено!`, type: 'success' });
       setShowDeleteModal(false); // Закриваємо модальне вікно
-      setRabbitToDelete(null); // Очищаємо дані Сірого вовка для видалення
+      setGraywolfToDelete(null); // Очищаємо дані Сірого вовка для видалення
 
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message;
@@ -239,13 +239,13 @@ function Rehabilitation() {  // Стан для зберігання даних 
         </div>
       )}
       
-      {!loading && rabbits.length === 0 && (
+      {!loading && graywolfs.length === 0 && (
         <section className="alert alert-info">
           Немає доступних записів про Сірих вовків у реабілітації. Додайте першого Сірого вовка!
         </section>
       )}
       
-      {!loading && rabbits.length > 0 && (
+      {!loading && graywolfs.length > 0 && (
         <section className="table-responsive">
           <table className="table table-striped table-bordered table-hover vertical-align-middle">
             <thead>
@@ -261,20 +261,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
               </tr>
             </thead>
             <tbody>
-              {rabbits.map(rabbit => (
-                <tr key={rabbit._id}>
-                  <td>{rabbit.name}</td>
-                  <td>{rabbit.age}</td>
-                  <td>{rabbit.height}</td>
-                  <td>{rabbit.weight}</td>
-                  <td>{rabbit.gender === 'male' ? 'Самець' : 'Самиця'}</td>
-                  <td>{rabbit.description}</td>
-                  <td>{rabbit.dateAdded ? formatDate(rabbit.dateAdded) : 'Н/Д'}</td>
+              {graywolfs.map(graywolf => (
+                <tr key={graywolf._id}>
+                  <td>{graywolf.name}</td>
+                  <td>{graywolf.age}</td>
+                  <td>{graywolf.height}</td>
+                  <td>{graywolf.weight}</td>
+                  <td>{graywolf.gender === 'male' ? 'Самець' : 'Самиця'}</td>
+                  <td>{graywolf.description}</td>
+                  <td>{graywolf.dateAdded ? formatDate(graywolf.dateAdded) : 'Н/Д'}</td>
                   <td>
                     <button
                       type="button"
                       className="btn btn-outline-primary btn-sm me-2"
-                      onClick={() => handleShowEditModal(rabbit)}
+                      onClick={() => handleShowEditModal(graywolf)}
                       disabled={loading}
                     >
                       Редагувати
@@ -282,7 +282,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                     <button
                       type="button"
                       className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleShowDeleteModal(rabbit)}
+                      onClick={() => handleShowDeleteModal(graywolf)}
                       disabled={loading}
                     >
                       Видалити
@@ -298,20 +298,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
       {/* Модальне вікно для додавання нового Сірого вовка */}
       <div 
         className={`modal fade ${showAddModal ? 'show' : ''}`} 
-        id="addRabbitModal" 
+        id="addGraywolfModal" 
         tabIndex="-1" 
-        aria-labelledby="addRabbitModalLabel" 
+        aria-labelledby="addGraywolfModalLabel" 
         aria-hidden="true"
         style={{ display: showAddModal ? 'block' : 'none' }}
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <header className="modal-header">
-              <h2 className="modal-title h5" id="addRabbitModalLabel">Додати нового Сірого вовка</h2>
+              <h2 className="modal-title h5" id="addGraywolfModalLabel">Додати нового Сірого вовка</h2>
               <button type="button" className="btn-close" onClick={() => setShowAddModal(false)} aria-label="Закрити"></button>
             </header>
             <div className="modal-body">
-              <form onSubmit={handleAddRabbit}>
+              <form onSubmit={handleAddGraywolf}>
                 <fieldset>
                   <div className="row mb-3">
                     <label htmlFor="name" className="col-sm-3 col-form-label">Ім'я</label>
@@ -438,20 +438,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
       {/* Модальне вікно для редагування існуючого Сірого вовка */}
       <div 
         className={`modal fade ${showEditModal ? 'show' : ''}`} 
-        id="editRabbitModal" 
+        id="editGraywolfModal" 
         tabIndex="-1" 
-        aria-labelledby="editRabbitModalLabel" 
+        aria-labelledby="editGraywolfModalLabel" 
         aria-hidden="true"
         style={{ display: showEditModal ? 'block' : 'none' }}
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <header className="modal-header">
-              <h2 className="modal-title h5" id="editRabbitModalLabel">Редагувати Сірого вовка</h2>
+              <h2 className="modal-title h5" id="editGraywolfModalLabel">Редагувати Сірого вовка</h2>
               <button type="button" className="btn-close" onClick={() => setShowEditModal(false)} aria-label="Закрити"></button>
             </header>
             <div className="modal-body">
-              <form onSubmit={handleUpdateRabbit}>
+              <form onSubmit={handleUpdateGraywolf}>
                 <fieldset>
                   <div className="row mb-3">
                     <label htmlFor="edit-name" className="col-sm-3 col-form-label">Ім'я</label>
@@ -578,21 +578,21 @@ function Rehabilitation() {  // Стан для зберігання даних 
       {/* Модальне вікно для підтвердження видалення Сірого вовка */}
       <div 
         className={`modal fade ${showDeleteModal ? 'show' : ''}`} 
-        id="deleteRabbitModal" 
+        id="deleteGraywolfModal" 
         tabIndex="-1" 
-        aria-labelledby="deleteRabbitModalLabel" 
+        aria-labelledby="deleteGraywolfModalLabel" 
         aria-hidden="true"
         style={{ display: showDeleteModal ? 'block' : 'none' }}
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <header className="modal-header">
-              <h2 className="modal-title h5" id="deleteRabbitModalLabel">Підтвердження видалення</h2>
+              <h2 className="modal-title h5" id="deleteGraywolfModalLabel">Підтвердження видалення</h2>
               <button type="button" className="btn-close" onClick={() => setShowDeleteModal(false)} aria-label="Закрити"></button>
             </header>
             <div className="modal-body">
-              {rabbitToDelete && (
-                <p>Ви впевнені, що хочете видалити Сірого вовка <strong>{rabbitToDelete.name}</strong>?</p>
+              {graywolfToDelete && (
+                <p>Ви впевнені, що хочете видалити Сірого вовка <strong>{graywolfToDelete.name}</strong>?</p>
               )}
             </div>
             <footer className="modal-footer">              
@@ -602,7 +602,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
               <button 
                 type="button" 
                 className="btn btn-danger" 
-                onClick={handleDeleteRabbit}
+                onClick={handleDeleteGraywolf}
                 disabled={loading}
               >
                 {loading ? (
