@@ -63,12 +63,13 @@ describe('API вебдодатку сайту про Сірих вовків', (
         it('має створити запис про нового Сірого вовка', done => {
             // Тестові дані Сірого вовка
             const graywolf = {
-                name: 'Вухань',
+                name: 'Сірий',
                 age: 2,
                 height: 30,
                 weight: 2.5,
                 gender: 'male' as const,
                 description: 'Сірий вовк',
+                herdSize: '10 особин',
             };
 
             // Виконуємо POST-запит для створення запису про Сірого вовка
@@ -88,6 +89,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                     expect(res.body).to.have.property('gender', graywolf.gender);
                     expect(res.body).to.have.property('description', graywolf.description);
                     expect(res.body).to.have.property('dateAdded');
+                    expect(res.body).to.have.property('herdSize', graywolf.herdSize);
                     expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
                     done();
                 });
@@ -99,12 +101,13 @@ describe('API вебдодатку сайту про Сірих вовків', (
         it('має отримати всіх Сірих вовків', async () => {
             // Створюємо тестовий запис Сірого вовка
             const testGraywolf = new Graywolf({
-                name: 'Білан',
+                name: 'Вовчик',
                 age: 3,
                 height: 35,
                 weight: 3.2,
                 gender: 'male',
                 description: 'Гарний Сірий вовк',
+                herdSize: '10 особин',
             });
             await testGraywolf.save();
 
@@ -117,6 +120,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res.body[0]).to.have.property('gender', 'male');
             expect(res.body[0]).to.have.property('description', 'Гарний Сірий вовк');
             expect(res.body[0]).to.have.property('dateAdded');
+            expect(res.body[0]).to.have.property('herdSize', '10 особин');
             expect(new Date(res.body[0].dateAdded)).to.be.instanceOf(Date);
         });
     });
@@ -126,12 +130,13 @@ describe('API вебдодатку сайту про Сірих вовків', (
         it('має отримати конкретного Сірого вовка за id', async () => {
             // Створюємо запис тестового Сірого вовка
             const testGraywolf = new Graywolf({
-                name: 'Косий',
+                name: 'Сіряк',
                 age: 1,
                 height: 25,
                 weight: 1.8,
                 gender: 'male',
                 description: 'Злий Сірий вовк',
+                herdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
@@ -144,6 +149,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Злий Сірий вовк');
+            expect(res.body).to.have.property('herdSize', '10 особин');
         });
 
         it('має повернути 404 для неіснуючого Сірого вовка', async () => {
@@ -164,6 +170,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                herdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
@@ -175,6 +182,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 2.5,
                 gender: 'female',
                 description: 'Оновлений опис',
+                herdSize: '20 особин',
             };
 
             // Виконуємо PUT-запит для повного оновлення запису про Сірого вовка
@@ -192,6 +200,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
             expect(res.body).to.have.property('dateAdded');
+            expect(res.body).to.have.property('herdSize', '20 особин');
             expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
         });
 
@@ -204,6 +213,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                herdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
@@ -214,6 +224,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 // height і weight відсутні
                 gender: 'female',
                 description: 'Оновлений опис',
+                herdSize: '10 особин',
             };
 
             // Виконуємо PUT-запит з неповними даними
@@ -230,6 +241,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(unchangedGraywolf).to.have.property('name', 'Оригінальний');
             expect(unchangedGraywolf).to.have.property('height', 25);
             expect(unchangedGraywolf).to.have.property('weight', 1.8);
+            expect(unchangedGraywolf).to.have.property('herdSize', '10 особин');
         });
     });
 
@@ -244,6 +256,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                herdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
@@ -252,6 +265,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 name: 'Частково оновлений',
                 age: 3,
                 description: 'Оновлений опис',
+                herdSize: '20 особин',
             };
 
             // Виконуємо PATCH-запит
@@ -269,6 +283,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Оновлений опис');
             expect(res.body).to.have.property('dateAdded');
+            expect(res.body).to.have.property('herdSize', '20 особин');
             expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
         });
 
@@ -281,6 +296,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                erdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
@@ -291,6 +307,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 // height і weight навмисно відсутні
                 gender: 'female',
                 description: 'Оновлений опис',
+                erdSize: '10 особин',
             };
 
             // Виконуємо PATCH-запит
@@ -308,6 +325,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
+            expect(res.body).to.have.property('erdSize', '10 особин');
         });
     });
 
@@ -342,12 +360,13 @@ describe('API вебдодатку сайту про Сірих вовків', (
         it('має видалити запис про Сірого вовка', async () => {
             // Створюємо тестового Сірого вовка
             const testGraywolf = new Graywolf({
-                name: 'Стрибунець',
+                name: 'Лапа',
                 age: 2,
                 height: 28,
                 weight: 2.1,
                 gender: 'female',
-                description: 'Великий Сірий вовк',
+                description: 'Велика Сіра вовчиця',
+                erdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 

@@ -9,6 +9,7 @@ interface IGraywolf {
     gender: 'male' | 'female'; // Стать Сірого вовка: 'male' - самець, 'female' - самка
     description?: string; // Опис Сірого вовка (необов'язкове поле)
     dateAdded: Date; // Дата додавання запису до бази даних
+    herdSize: string; //Розмір зграї
 }
 
 // Схема MongoDB для моделі "Сірий вовк"
@@ -38,6 +39,10 @@ const graywolfSchema = new Schema<IGraywolf>({
     dateAdded: {
         type: Date,
         default: Date.now, // Значення за замовчуванням - поточна дата і час
+    },
+    herdSize: {
+        type: String,
+        required: true, // Поле є обов'язковим
     },
 });
 

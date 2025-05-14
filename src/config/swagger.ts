@@ -208,6 +208,10 @@ export const swaggerSpec = {
                         type: 'string',
                         description: "Опис Сірого вовка (необов'язкове поле)",
                     },
+                    herdSize: {
+                        type: 'string',
+                        herdSize: 'Розмір зграї',
+                    },
                 },
             },
         },
