@@ -3,11 +3,11 @@ function Morphology() {
     <main className="container px-4 py-4">
       <article>
         <section>
-          <h3 className="h3 text-success">Зовнішній вигляд</h3>
+          <h3 className="h3 text-secondary">Зовнішній вигляд</h3>
           <p>Зовнішній вигляд вовка свідчить про його міць та пристосування до тривалого бігу при переслідуванні своїх жертв.</p>
         </section>
         <section>
-          <h3 className="h3 text-success">Особливості будови</h3>
+          <h3 className="h3 text-secondary">Особливості будови</h3>
           <ul>
             <li>Висота в плечах 80—95 см.</li>
             <li>Вага зазвичай 45—60 кг.</li>

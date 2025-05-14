@@ -14,7 +14,7 @@ function Photo() {
   return (
     <main className="container px-4 py-4 flex-grow-1">
       <article>
-        <h2 className="h2 text-success mb-4">Фотогалерея Сірих вовків</h2>
+        <h2 className="h2 text-secondary mb-4">Фотогалерея Сірих вовків</h2>
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-indicators">
             {images.map((_, index) => (

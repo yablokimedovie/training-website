@@ -77,7 +77,7 @@ footer {
   padding: calc(var(--spacing-base) * 0.5) var(--spacing-base);
   position: relative;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.9);
+  color:  rgb(61 56 56);
   text-decoration: none;
   transition: all var(--transition-base);
 }
@@ -94,7 +94,9 @@ footer {
 }
 
 .alert{
-  background-color: #dee2e6;
+  background-color:#afbbbe;
+  border-color: #d1d7d8;
+  color: #606566;
 }
 
 .nav-link::after {
