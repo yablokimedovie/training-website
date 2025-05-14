@@ -22,11 +22,11 @@ function Header() {
         <div className="logo-container">
           <Link to="/" className="text-white text-decoration-none d-flex align-items-center">
             <img 
-              src="/images/european-hare-6121jpg.webp" 
-              alt="Заєць" 
+              src="/images/4UhsJ4Eaz02SzpkOwDkW.webp" 
+              alt="Сірий вовк" 
               className="site-logo rounded-circle me-2"
             />
-            <span className="fs-4">Сайт про зайців</span>
+            <span className="fs-4">Сайт про Сірого вовка</span>
           </Link>
         </div>
 
@@ -35,16 +35,16 @@ function Header() {
             Головна
           </Link>
           <Link to="/morphology" className={`nav-link text-white ${location.pathname === '/morphology' ? 'active' : ''}`}>
-            Зовнішній вигляд зайців
+            Зовнішній вигляд вовків
           </Link>
           <Link to="/nutrition" className={`nav-link text-white ${location.pathname === '/nutrition' ? 'active' : ''}`}>
-            Харчування зайців
+            Харчування вовків
           </Link>
           <Link to="/population" className={`nav-link text-white ${location.pathname === '/population' ? 'active' : ''}`}>
-            Ареал зайців
+            Ареал вовків
           </Link>
           <Link to="/photo" className={`nav-link text-white ${location.pathname === '/photo' ? 'active' : ''}`}>
-            Фотографії зайців
+            Фотографії вовків
           </Link>
         </nav>
 
