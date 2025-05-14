@@ -26,7 +26,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
     height: '',
     weight: '',
     gender: 'male',
-    description: ''
+    description: '',
+    herdSize:''
   });
 
   // При рендерингу компонента, отримуємо всіх Сірих вовків
@@ -85,7 +86,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
       height: '',
       weight: '',
       gender: 'male',
-      description: ''
+      description: '',
+      herdSize:''
     });
     setShowAddModal(true);
   };
@@ -99,7 +101,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
       height: graywolf.height,
       weight: graywolf.weight,
       gender: graywolf.gender,
-      description: graywolft.description || ''
+      description: graywolft.description || '',
+      herdSize: graywolft.herdSize
     });
     setShowEditModal(true);
   };
@@ -256,6 +259,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                 <th>Вага (кг)</th>
                 <th>Стать</th>
                 <th>Опис</th>
+                <th>Розмір зграї</th>
                 <th>Дата додавання</th>
                 <th>Дії</th>
               </tr>
@@ -269,6 +273,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                   <td>{graywolf.weight}</td>
                   <td>{graywolf.gender === 'male' ? 'Самець' : 'Самиця'}</td>
                   <td>{graywolf.description}</td>
+                  <td>{graywolf.herdSize}</td>
                   <td>{graywolf.dateAdded ? formatDate(graywolf.dateAdded) : 'Н/Д'}</td>
                   <td>
                     <button
@@ -409,6 +414,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
                       ></textarea>
                     </div>
                   </div>
+                  <div className="row mb-3">
+                    <label htmlFor="herdSize" className="col-sm-3 col-form-label">Розмір зграї</label>
+                    <div className="col-sm-9">
+                      <input 
+                        type="string" 
+                        className="form-control" 
+                        id="herdSize" 
+                        name="herdSize" 
+                        value={formData.herdSize} 
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
                 </fieldset>
                 <footer className="d-flex justify-content-end">
                   <button type="button" className="btn btn-secondary me-2" onClick={() => setShowAddModal(false)}>
@@ -547,6 +566,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
                         onChange={handleInputChange}
                         rows={3}
                       ></textarea>
+                    </div>
+                  </div>
+                   <div className="row mb-3">
+                    <label htmlFor="herdSize" className="col-sm-3 col-form-label">Розмір зграї</label>
+                    <div className="col-sm-9">
+                      <input 
+                        type="string" 
+                        className="form-control" 
+                        id="herdSize" 
+                        name="herdSize" 
+                        value={formData.herdSize} 
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                   </div>
                 </fieldset>                
