@@ -116,7 +116,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
             expect(res.body.length).to.equal(1);
-            expect(res.body[0]).to.have.property('name', 'Білан');
+            expect(res.body[0]).to.have.property('name', 'Вовчик');
             expect(res.body[0]).to.have.property('gender', 'male');
             expect(res.body[0]).to.have.property('description', 'Гарний Сірий вовк');
             expect(res.body[0]).to.have.property('dateAdded');
@@ -143,7 +143,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             // Виконуємо GET-запит для отримання запису Сірого вовка за ID
             const res = await chai.request(app).get(`/api/graywolfs/${String(savedGraywolf._id)}`);
             expect(res).to.have.status(200);
-            expect(res.body).to.have.property('name', 'Косий');
+            expect(res.body).to.have.property('name', 'Сіряк');
             expect(res.body).to.have.property('age', 1);
             expect(res.body).to.have.property('height', 25);
             expect(res.body).to.have.property('weight', 1.8);
