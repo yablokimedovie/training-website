@@ -296,7 +296,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
-                erdSize: '10 особин',
+                herdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
@@ -307,7 +307,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 // height і weight навмисно відсутні
                 gender: 'female',
                 description: 'Оновлений опис',
-                erdSize: '10 особин',
+                herdSize: '10 особин',
             };
 
             // Виконуємо PATCH-запит
@@ -325,7 +325,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
-            expect(res.body).to.have.property('erdSize', '10 особин');
+            expect(res.body).to.have.property('herdSize', '10 особин');
         });
     });
 
@@ -366,7 +366,7 @@ describe('API вебдодатку сайту про Сірих вовків', (
                 weight: 2.1,
                 gender: 'female',
                 description: 'Велика Сіра вовчиця',
-                erdSize: '10 особин',
+                herdSize: '10 особин',
             });
             const savedGraywolf = await testGraywolf.save();
 
