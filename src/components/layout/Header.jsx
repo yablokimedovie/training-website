@@ -26,7 +26,7 @@ function Header() {
               alt="Сірий вовк" 
               className="site-logo rounded-circle me-2"
             />
-            <span className="fs-4">Сайт про Сірого вовка</span>
+            <span className="fs-6">Сайт про Сірого вовка</span>
           </Link>
         </div>
 
