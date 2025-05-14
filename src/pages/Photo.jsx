@@ -3,18 +3,18 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Photo() {
   const images = [
-    { src: '/images/1200px-haas-in-het-grasjpg.webp', alt: 'Зайці в траві' },
-    { src: '/images/1200px-hasebeioberwerbejpg.webp', alt: 'Зайці в полі' },
-    { src: '/images/european-hare-6121jpg.webp', alt: 'Європейський заєць' },
-    { src: '/images/fFKuESpf7VTCGBNPscig.webp', alt: 'Зайці на лузі' },
-    { src: '/images/halljnes.webp', alt: 'Зайці в лісі' },
-    { src: '/images/zu6YRoYqGYVyExZ54dDT.webp', alt: 'Зайці на лузі' }
+    { src: '/images/4UhsJ4Eaz02SzpkOwDkW.webp', alt: 'Красивий Сірий вовк' },
+    { src: '/images/8hMRXCC1VkBzfHxd45Vk.webp', alt: 'Сірий вовк в снігу' },
+    { src: '/images/dLn9yYDKNWwibtevRAby.webp', alt: 'Сірий вовк' },
+    { src: '/images/eQgIGJEvenB8A1Htabk9.webp', alt: 'Сірий вовк в лісі' },
+    { src: '/images/rhEW0dL79HL5gz2iXWT9.webp', alt: 'Сірий вовк в квітах' },
+    { src: '/images/SL9rV2Qn86VvlebsiXVT.webp', alt: 'Сірий вовк і зима' }
   ];
 
   return (
     <main className="container px-4 py-4 flex-grow-1">
       <article>
-        <h2 className="h2 text-success mb-4">Фотогалерея зайців</h2>
+        <h2 className="h2 text-success mb-4">Фотогалерея Сірих вовків</h2>
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-indicators">
             {images.map((_, index) => (
